@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>com.microchip.mplab.nbide.embedded.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>NRF24L01_Lib</name>
+            <creation-uuid>43dd08db-9178-4e61-9774-14725e2deb4e</creation-uuid>
+            <make-project-type>0</make-project-type>
+            <c-extensions>c</c-extensions>
+            <cpp-extensions/>
+            <header-extensions>h</header-extensions>
+            <asminc-extensions/>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>01 - SRC/01_Appli</sourceRootElem>
+                <sourceRootElem>01 - SRC/02_Soft_SPI</sourceRootElem>
+                <sourceRootElem>01 - SRC/03_NRF24L01</sourceRootElem>
+                <sourceRootElem>01 - SRC/04_MCC_33EV256GM106</sourceRootElem>
+                <sourceRootElem>01 - SRC/05_MCC_16F1575</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>PIC18F2431</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>PIC16F1575</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>dsPIC33EV</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>
