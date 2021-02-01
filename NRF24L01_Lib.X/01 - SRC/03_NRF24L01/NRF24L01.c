@@ -24,23 +24,48 @@ void NRF24L01_Init(void)
 void NRF_SET_PRX(void)
 {
     t_NRF_Config R_CONFIG;
+    t_NRF_RX_ADDR_5_BYTES Pipe1;
+    uint8_t R_Status;
+    uint8_t R_Register;
     R_CONFIG.byte = 0;
     
     NRF_REG_CONFIG.PWR_UP = 1u;
     NRF_REG_CONFIG.EN_CRC = 1u;
     NRF_REG_CONFIG.PRIM_RX = 1u;
     
-    NRF_REG_STATUS.byte = NRF_Write_Register(REG_NRF_CONFIG, &NRF_REG_CONFIG.byte, 1);
-    PrintUART("\r\nSTATUS REGISTER (1): ");
-    UART_PNbase(NRF_REG_STATUS.byte, UART_BIN, "\r\n");
+    R_Status = NRF_Write_Register(REG_NRF_CONFIG, &NRF_REG_CONFIG.byte, 1);
+    R_Status = NRF_Read_Register(REG_NRF_CONFIG, &R_CONFIG.byte, 1);
+    PrintUART("\r\nCONFIG: ");
+    UART_PNbase(R_CONFIG.byte, UART_BIN, " STA: ");
+    UART_PNbase(R_Status, UART_BIN, "\r\n");
     
-    NRF_REG_STATUS.byte = NRF_Read_Register(REG_NRF_RX_ADDR_P0, NRF_ADDR_PIPE_0.ByteArray, 5);
+    R_Status = NRF_Read_Register(REG_NRF_RX_ADDR_P0, NRF_ADDR_PIPE_0.ByteArray, 5);
     PrintUART("\r\nADDR PIPE 0: : ");
     UART_PNbase(NRF_ADDR_PIPE_0.Byte4, UART_HEX, " ");
     UART_PNbase(NRF_ADDR_PIPE_0.Byte3, UART_HEX, " ");
     UART_PNbase(NRF_ADDR_PIPE_0.Byte2, UART_HEX, " ");
     UART_PNbase(NRF_ADDR_PIPE_0.Byte1, UART_HEX, " ");
-    UART_PNbase(NRF_ADDR_PIPE_0.Byte0, UART_HEX, "\r\n");
+    UART_PNbase(NRF_ADDR_PIPE_0.Byte0, UART_HEX, " STA: ");
+    UART_PNbase(R_Status, UART_BIN, "\r\n");
+    
+    R_Status = NRF_Read_Register(REG_NRF_RX_ADDR_P1, Pipe1.ByteArray, 5);
+    PrintUART("ADDR PIPE 1: : ");
+    UART_PNbase(Pipe1.Byte4, UART_HEX, " ");
+    UART_PNbase(Pipe1.Byte3, UART_HEX, " ");
+    UART_PNbase(Pipe1.Byte2, UART_HEX, " ");
+    UART_PNbase(Pipe1.Byte1, UART_HEX, " ");
+    UART_PNbase(Pipe1.Byte0, UART_HEX, " STA: ");
+    UART_PNbase(R_Status, UART_BIN, "\r\n");
+    
+    R_Status = NRF_Read_Register(REG_NRF_RF_CH, &R_Register, 1);
+    PrintUART("RF CH: ");
+    UART_PNbase(R_Register, UART_BIN, "  STA: ");
+    UART_PNbase(R_Status, UART_BIN, "\r\n");
+    
+    R_Status = NRF_Read_Register(REG_NRF_RF_SETUP, &R_Register, 1);
+    PrintUART("RF_SETUP: ");
+    UART_PNbase(R_Register, UART_BIN, "  STA: ");
+    UART_PNbase(R_Status, UART_BIN, "\r\n");
 }
 
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
