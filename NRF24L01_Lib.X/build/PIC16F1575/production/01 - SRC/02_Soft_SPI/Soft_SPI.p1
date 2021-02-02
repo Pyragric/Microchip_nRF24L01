@@ -707,59 +707,64 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "5
 [v _i `uc ~T0 @X0 1 a ]
+[v _j `uc ~T0 @X0 1 a ]
 "6
 [v _RxByte `uc ~T0 @X0 1 a ]
 [e = _RxByte -> -> 0 `ui `uc ]
 "7
-{
-[e = _i -> -> 7 `i `uc ]
-[e $ > -> _i `i -> 0 `i 601  ]
-[e $U 602  ]
-[e :U 601 ]
+[e = _j -> -> 7 `ui `uc ]
 "8
 {
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 601  ]
+[e $U 602  ]
+[e :U 601 ]
 "9
-[e = . . _LATCbits 0 0 -> & -> >> -> _TxByte `i -> _i `i `ui -> 1 `ui `uc ]
+{
 "10
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[e = . . _LATCbits 0 0 -> & -> >> -> _TxByte `i -> _j `i `ui -> 1 `ui `uc ]
 "11
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"12
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+"12
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 "13
-[e =| _RxByte -> << & -> . . _PORTCbits 0 1 `ui -> 1 `ui -> _i `i `uc ]
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "14
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+[e =| _RxByte -> << & -> . . _PORTCbits 0 1 `ui -> 1 `ui -> _j `i `uc ]
 "15
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+"16
+[e -- _j -> -> 1 `i `uc ]
+"17
 }
-[e -- _i -> -> 1 `i `uc ]
-[e $ > -> _i `i -> 0 `i 601  ]
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 601  ]
 [e :U 602 ]
 }
-"16
+"18
 [e ) _RxByte ]
 [e $UE 600  ]
-"17
+"19
 [e :UE 600 ]
 }
-"19
+"21
 [v _timerDelay `(v ~T0 @X0 1 ef ]
-"20
+"22
 {
 [e :U _timerDelay ]
 [f ]
-"21
+"23
 [e ( _TMR1_StartTimer ..  ]
-"22
+"24
 [e $U 605  ]
 [e :U 606 ]
 [e :U 605 ]
 [e $ ! != -> ( _TMR1_HasOverflowOccured ..  `i -> 0 `i 606  ]
 [e :U 607 ]
-"23
-[e ( _TMR1_StopTimer ..  ]
-"24
-[e ( _TMR1_Reload ..  ]
 "25
+[e ( _TMR1_StopTimer ..  ]
+"26
+[e ( _TMR1_Reload ..  ]
+"27
 [e :UE 604 ]
 }

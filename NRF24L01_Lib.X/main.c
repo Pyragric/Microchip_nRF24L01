@@ -38,7 +38,6 @@ void main(void)
     AppInit();
     NRF24L01_Init();
     __delay_ms(10);
-    NRF_SET_PRX();
     
     while (1)
     {
@@ -49,7 +48,6 @@ void main(void)
             /*-----------------------------*/
             PWM1_DutyCycleSet(SineTab[cnter]);
             PWM1_LoadBufferSet();
-            p_NRF_SPI_Exchange(cnter);
             cnter++;
             Timeout_10ms = TICK_1MS + 10u;
         }

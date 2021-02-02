@@ -107,14 +107,57 @@
 
 typedef struct
 {
-    uint8_t STATUS;
-    uint8_t CONFIG;
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t TX_FULL :       1;
+            uint8_t RX_P_NO :       3;
+            uint8_t MAX_RT :        1;
+            uint8_t TX_DS :         1;
+            uint8_t RX_DR :         1;
+        }s;
+    }STATUS;
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t PRIM_RX:        1;
+            uint8_t PWR_UP:         1;
+            uint8_t CRCO:           1;
+            uint8_t EN_CRC:         1;
+            uint8_t MASK_MAX_RT:    1;
+            uint8_t MASK_TX_DS:     1;
+            uint8_t MASK_RX_DR:     1;
+        }s;
+    }CONFIG;
     uint8_t TX_ADDR[5];
     uint8_t RF_CHANNEL;
-    uint8_t RF_POWER;
-    uint8_t RF_SETUP;
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t :               1;
+            uint8_t PWR:            2;
+            uint8_t DR_H:           1;
+            uint8_t PLL_LOCK:       1;
+            uint8_t DR_L:           1;
+            uint8_t CONT_WAVE:      1;
+        }s;
+    }RF_SETUP;
     uint8_t ADDR_WIDTH;
-    uint8_t SETUP_RETR;
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t ARD :           4;
+            uint8_t ARC :           4;
+        }s;
+    }SETUP_RETR;
     uint8_t ReadFlag;
 } t_NRF_Setup;
 
@@ -126,14 +169,13 @@ typedef struct
 } t_NRF_RX_PIPE;
 
 void NRF24L01_Init(void);
-void NRF_Set_PRX(t_NRF_Setup *MyNRF);
-void NRF_Set_PTX(t_NRF_Setup *MyNRF);
-void NRF_SetRFChannel(t_NRF_Setup *MyNRF, uint8_t RF_Channel);
-void NRF_SetRFPower(t_NRF_Setup *MyNRF, uint8_t RF_Pow);
-void NRF_SetRFDataRate(t_NRF_Setup *MyNRF, uint8_t Datarate);
-void NRF_SetAddrWidth(t_NRF_Setup *MyNRF, uint8_t Width);
+void NRF_SetPrimaryAs(uint8_t asPrimary);
+void NRF_SetRFChannel(uint8_t RF_Channel);
+void NRF_SetRFPower(uint8_t RF_Pow);
+void NRF_SetRFDataRate(uint8_t Datarate);
+void NRF_SetAddrWidth(uint8_t AddressWidth);
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 uint8_t NRF_Read_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 void NRF_IRQ_ISR_Handler(void);
-void Set_SPI_Handler(uint8_t (*SPI_Handler)(uint8_t));
+void NRF_Set_SPI_Handler(uint8_t (*SPI_Handler)(uint8_t));
 #endif /* NRF24L01_H */

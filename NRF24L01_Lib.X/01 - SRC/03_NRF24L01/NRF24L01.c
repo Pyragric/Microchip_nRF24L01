@@ -1,60 +1,52 @@
 #include "NRF24L01.h"
 
 static uint8_t (*p_NRF_SPI_Exchange)(uint8_t);
+static t_NRF_Setup NRFChip;
 
 void NRF24L01_Init(void)
 {
-    Set_SPI_Handler(SoftSPI_Exchange);
+    NRF_Set_SPI_Handler(SoftSPI_Exchange);
     NRF_PIN_CE = 0;
     NRF_PIN_CSN = 1;
+    NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
+    NRF_Read_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
+    NRF_Read_Register(REG_NRF_SETUP_RETR, &NRFChip.SETUP_RETR.byte, 1u);
+    NRF_Read_Register(REG_NRF_RF_CH, &NRFChip.RF_CHANNEL, 1u);
+    NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
+    NRFChip.STATUS.byte = NRF_Read_Register(REG_NRF_TX_ADDR, &NRFChip.TX_ADDR, 5u);
+    NRFChip.ReadFlag = 1u;
 }
 
-void NRF_Set_PRX(t_NRF_Setup *MyNRF)
+void NRF_SetPrimaryAs(uint8_t asPrimary)
 {
-    NRF_Read_Register(REG_NRF_CONFIG, &MyNRF->CONFIG, 1u);
-    MyNRF->CONFIG |= NRF_PRX;
-    MyNRF->STATUS = NRF_Write_Register(REG_NRF_CONFIG, &MyNRF->CONFIG, 1u);
+    NRFChip.CONFIG.s.PWR_UP = asPrimary;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
 }
 
-void NRF_Set_PTX(t_NRF_Setup *MyNRF)
+void NRF_SetRFChannel(uint8_t RF_Channel)
 {
-    NRF_Read_Register(REG_NRF_CONFIG, &MyNRF->CONFIG, 1u);
-    MyNRF->CONFIG &= ~NRF_PRX;
-    MyNRF->STATUS = NRF_Write_Register(REG_NRF_CONFIG, &MyNRF->CONFIG, 1u);
+    NRFChip.RF_CHANNEL = (RF_Channel > 125u) ? 125u : RF_Channel;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_CH, &NRFChip.RF_CHANNEL, 1u);
 }
 
-void NRF_SetRFChannel(t_NRF_Setup *MyNRF, uint8_t RF_Channel)
+void NRF_SetRFPower(uint8_t RF_Pow)
 {
-    MyNRF->RF_CHANNEL = (RF_Channel > 125u) ? 125u : RF_Channel;
-    MyNRF->STATUS = NRF_Write_Register(REG_NRF_RF_CH, &MyNRF->RF_CHANNEL, 1u);
+    NRFChip.RF_SETUP.s.PWR = (RF_Pow > 3u) ? 3u : RF_Pow;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
 }
 
-void NRF_SetRFPower(t_NRF_Setup *MyNRF, uint8_t RF_Pow)
+void NRF_SetRFDataRate(uint8_t Datarate)
 {
-    NRF_Read_Register(REG_NRF_RF_SETUP, &MyNRF->RF_SETUP, 1u);
-    RF_Pow = (RF_Pow > 3u) ? 3u : RF_Pow;
-    RF_Pow = (RF_Pow << 1u) | 0x06u;
-    MyNRF->RF_SETUP &= ~0x06u;
-    MyNRF->RF_SETUP |= RF_Pow;
-    MyNRF->STATUS = NRF_Write_Register(REG_NRF_RF_SETUP, &MyNRF->RF_SETUP, 1u);
+    NRFChip.RF_SETUP.s.DR_L = (Datarate > 1u) ? 1u : 0u;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
 }
 
-void NRF_SetRFDataRate(t_NRF_Setup *MyNRF, uint8_t Datarate)
+void NRF_SetAddrWidth(uint8_t AddressWidth)
 {
-    NRF_Read_Register(REG_NRF_RF_SETUP, &MyNRF->RF_SETUP, 1u);
-    Datarate = (Datarate > 1u) ? 1u : 0u;
-    Datarate = (Datarate << 3u) & 0x08u;
-    MyNRF->RF_SETUP &= ~0x08u;
-    MyNRF->RF_SETUP |= Datarate;
-    MyNRF->STATUS = NRF_Write_Register(REG_NRF_RF_SETUP, &MyNRF->RF_SETUP, 1u);
-}
-
-void NRF_SetAddrWidth(t_NRF_Setup *MyNRF, uint8_t Width)
-{
-    Width += (Width == 0u) ? 1u : 0u;
-    Width = (Width > 3u) ? 3u : 0u;
-    MyNRF->ADDR_WIDTH = Width;
-    MyNRF->STATUS = NRF_Write_Register(REG_NRF_SETUP_AW, &MyNRF->ADDR_WIDTH, 1u);
+    AddressWidth += (AddressWidth == 0u) ? 1u : 0u;
+    AddressWidth = (AddressWidth > 3u) ? 3u : 0u;
+    NRFChip.ADDR_WIDTH = AddressWidth;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
 }
 
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
@@ -88,7 +80,7 @@ void NRF_IRQ_ISR_Handler(void)
     
 }
 
-void Set_SPI_Handler (uint8_t(*SPI_Handler)(uint8_t))
+void NRF_Set_SPI_Handler (uint8_t(*SPI_Handler)(uint8_t))
 {
     p_NRF_SPI_Exchange = SPI_Handler;
 }

@@ -7319,16 +7319,18 @@ void timerDelay(void);
 
 uint8_t SoftSPI_Exchange (uint8_t TxByte)
 {
-    uint8_t i;
+    uint8_t i, j;
     uint8_t RxByte = 0u;
-    for (i = 7; i > 0; i--)
+    j = 7u;
+    for (i = 0; i < 8; i++)
     {
-        LATCbits.LATC0 = (TxByte >> i) & 1u;
+        LATCbits.LATC0 = (TxByte >> j) & 1u;
         _delay((unsigned long)((50)*(8000000/4000000.0)));
         LATCbits.LATC2 = 1;
         _delay((unsigned long)((50)*(8000000/4000000.0)));
-        RxByte |= (PORTCbits.RC1 & 1u) << i;
+        RxByte |= (PORTCbits.RC1 & 1u) << j;
         LATCbits.LATC2 = 0;
+        j--;
     }
     return RxByte;
 }

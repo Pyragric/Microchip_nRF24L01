@@ -22,16 +22,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PWM1_Start `(v ~T0 @X0 0 ef ]
 "19 ./01 - SRC/03_NRF24L01/../01_Appli/Application.h
 [v _AppInit `(v ~T0 @X0 0 ef ]
-"276 ./01 - SRC/03_NRF24L01/NRF24L01.h
-[; ;./01 - SRC/03_NRF24L01/NRF24L01.h: 276: void NRF24L01_Init(void);
+"171 ./01 - SRC/03_NRF24L01/NRF24L01.h
+[; ;./01 - SRC/03_NRF24L01/NRF24L01.h: 171: void NRF24L01_Init(void);
 [v _NRF24L01_Init `(v ~T0 @X0 0 ef ]
 [v F4076 `(v ~T0 @X0 1 tf1`ul ]
 "92 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic.h
 [v __delay `JF4076 ~T0 @X0 0 e ]
 [p i __delay ]
-"277 ./01 - SRC/03_NRF24L01/NRF24L01.h
-[; ;./01 - SRC/03_NRF24L01/NRF24L01.h: 277: void NRF_SET_PRX(void);
-[v _NRF_SET_PRX `(v ~T0 @X0 0 ef ]
 "63 ./01 - SRC/05_MCC_16F1575/tmr0.h
 [; ;./01 - SRC/05_MCC_16F1575/tmr0.h: 63: extern volatile uint16_t TimerTick1ms;
 [v _TimerTick1ms `Vus ~T0 @X0 0 e ]
@@ -43,10 +40,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "203 ./01 - SRC/05_MCC_16F1575/pwm1.h
 [; ;./01 - SRC/05_MCC_16F1575/pwm1.h: 203: void PWM1_LoadBufferSet(void);
 [v _PWM1_LoadBufferSet `(v ~T0 @X0 0 ef ]
-[v F4373 `(uc ~T0 @X0 0 tf1`uc ]
-"274 ./01 - SRC/03_NRF24L01/NRF24L01.h
-[; ;./01 - SRC/03_NRF24L01/NRF24L01.h: 274: extern uint8_t (*p_NRF_SPI_Exchange)(uint8_t);
-[v _p_NRF_SPI_Exchange `*F4373 ~T0 @X0 0 e ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1575.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1575.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -756,103 +749,97 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40
 [; ;main.c: 40:     _delay((unsigned long)((10)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"41
-[; ;main.c: 41:     NRF_SET_PRX();
-[e ( _NRF_SET_PRX ..  ]
+"42
+[; ;main.c: 42:     while (1)
+[e :U 612 ]
 "43
-[; ;main.c: 43:     while (1)
-[e :U 630 ]
+[; ;main.c: 43:     {
+{
 "44
-[; ;main.c: 44:     {
-{
+[; ;main.c: 44:         if (TimerTick1ms > Timeout_10ms)
+[e $ ! > -> _TimerTick1ms `ui -> _Timeout_10ms `ui 614  ]
 "45
-[; ;main.c: 45:         if (TimerTick1ms > Timeout_10ms)
-[e $ ! > -> _TimerTick1ms `ui -> _Timeout_10ms `ui 632  ]
-"46
-[; ;main.c: 46:         {
+[; ;main.c: 45:         {
 {
-"50
-[; ;main.c: 50:             PWM1_DutyCycleSet(SineTab[cnter]);
+"49
+[; ;main.c: 49:             PWM1_DutyCycleSet(SineTab[cnter]);
 [e ( _PWM1_DutyCycleSet (1 -> *U + &U _SineTab * -> _cnter `ux -> -> # *U &U _SineTab `ui `ux `us ]
-"51
-[; ;main.c: 51:             PWM1_LoadBufferSet();
+"50
+[; ;main.c: 50:             PWM1_LoadBufferSet();
 [e ( _PWM1_LoadBufferSet ..  ]
-"52
-[; ;main.c: 52:             p_NRF_SPI_Exchange(cnter);
-[e ( *U _p_NRF_SPI_Exchange (1 _cnter ]
-"53
-[; ;main.c: 53:             cnter++;
+"51
+[; ;main.c: 51:             cnter++;
 [e ++ _cnter -> -> 1 `i `uc ]
-"54
-[; ;main.c: 54:             Timeout_10ms = TimerTick1ms + 10u;
+"52
+[; ;main.c: 52:             Timeout_10ms = TimerTick1ms + 10u;
 [e = _Timeout_10ms -> + -> _TimerTick1ms `ui -> 10 `ui `us ]
+"53
+[; ;main.c: 53:         }
+}
+[e $U 615  ]
+"54
+[; ;main.c: 54:         else
+[e :U 614 ]
 "55
-[; ;main.c: 55:         }
-}
-[e $U 633  ]
+[; ;main.c: 55:         {
+{
 "56
-[; ;main.c: 56:         else
-[e :U 632 ]
-"57
-[; ;main.c: 57:         {
-{
+[; ;main.c: 56:         }
+}
+[e :U 615 ]
 "58
-[; ;main.c: 58:         }
-}
-[e :U 633 ]
-"60
-[; ;main.c: 60:         if (TimerTick1ms > Timeout_100ms)
-[e $ ! > -> _TimerTick1ms `ui -> _Timeout_100ms `ui 634  ]
-"61
-[; ;main.c: 61:         {
+[; ;main.c: 58:         if (TimerTick1ms > Timeout_100ms)
+[e $ ! > -> _TimerTick1ms `ui -> _Timeout_100ms `ui 616  ]
+"59
+[; ;main.c: 59:         {
 {
-"66
-[; ;main.c: 66:             Timeout_100ms = TimerTick1ms + 100u;
+"64
+[; ;main.c: 64:             Timeout_100ms = TimerTick1ms + 100u;
 [e = _Timeout_100ms -> + -> _TimerTick1ms `ui -> 100 `ui `us ]
+"65
+[; ;main.c: 65:         }
+}
+[e $U 617  ]
+"66
+[; ;main.c: 66:         else
+[e :U 616 ]
 "67
-[; ;main.c: 67:         }
-}
-[e $U 635  ]
+[; ;main.c: 67:         {
+{
 "68
-[; ;main.c: 68:         else
-[e :U 634 ]
-"69
-[; ;main.c: 69:         {
-{
-"70
-[; ;main.c: 70:         }
+[; ;main.c: 68:         }
 }
-[e :U 635 ]
-"73
-[; ;main.c: 73:         if (TimerTick1ms > Timeout_1s)
-[e $ ! > -> _TimerTick1ms `ui -> _Timeout_1s `ui 636  ]
-"74
-[; ;main.c: 74:         {
+[e :U 617 ]
+"71
+[; ;main.c: 71:         if (TimerTick1ms > Timeout_1s)
+[e $ ! > -> _TimerTick1ms `ui -> _Timeout_1s `ui 618  ]
+"72
+[; ;main.c: 72:         {
 {
-"80
-[; ;main.c: 80:             Timeout_1s = TimerTick1ms + 1000u;
+"78
+[; ;main.c: 78:             Timeout_1s = TimerTick1ms + 1000u;
 [e = _Timeout_1s -> + -> _TimerTick1ms `ui -> 1000 `ui `us ]
+"79
+[; ;main.c: 79:         }
+}
+[e $U 619  ]
+"80
+[; ;main.c: 80:         else
+[e :U 618 ]
 "81
-[; ;main.c: 81:         }
-}
-[e $U 637  ]
-"82
-[; ;main.c: 82:         else
-[e :U 636 ]
-"83
-[; ;main.c: 83:         {
+[; ;main.c: 81:         {
 {
+"82
+[; ;main.c: 82:         }
+}
+[e :U 619 ]
+"83
+[; ;main.c: 83:     }
+}
+[e :U 611 ]
+[e $U 612  ]
+[e :U 613 ]
 "84
-[; ;main.c: 84:         }
-}
-[e :U 637 ]
-"85
-[; ;main.c: 85:     }
-}
-[e :U 629 ]
-[e $U 630  ]
-[e :U 631 ]
-"86
-[; ;main.c: 86: }
-[e :UE 628 ]
+[; ;main.c: 84: }
+[e :UE 610 ]
 }

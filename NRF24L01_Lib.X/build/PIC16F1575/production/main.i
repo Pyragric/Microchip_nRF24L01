@@ -7322,218 +7322,80 @@ void UART_crlf(void);
 uint8_t SoftSPI_Exchange (uint8_t TxByte);
 void timerDelay(void);
 # 14 "./01 - SRC/03_NRF24L01/NRF24L01.h" 2
-# 71 "./01 - SRC/03_NRF24L01/NRF24L01.h"
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t PRIM_RX: 1;
-        uint8_t PWR_UP: 1;
-        uint8_t CRCO: 1;
-        uint8_t EN_CRC: 1;
-        uint8_t MASK_MAX_RT: 1;
-        uint8_t MASK_TX_DS: 1;
-        uint8_t MASK_RX_DR: 1;
-    };
-} t_NRF_Config;
+# 108 "./01 - SRC/03_NRF24L01/NRF24L01.h"
+typedef struct
+{
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t TX_FULL : 1;
+            uint8_t RX_P_NO : 3;
+            uint8_t MAX_RT : 1;
+            uint8_t TX_DS : 1;
+            uint8_t RX_DR : 1;
+        }s;
+    }STATUS;
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t PRIM_RX: 1;
+            uint8_t PWR_UP: 1;
+            uint8_t CRCO: 1;
+            uint8_t EN_CRC: 1;
+            uint8_t MASK_MAX_RT: 1;
+            uint8_t MASK_TX_DS: 1;
+            uint8_t MASK_RX_DR: 1;
+        }s;
+    }CONFIG;
+    uint8_t TX_ADDR[5];
+    uint8_t RF_CHANNEL;
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t : 1;
+            uint8_t PWR: 2;
+            uint8_t DR_H: 1;
+            uint8_t PLL_LOCK: 1;
+            uint8_t DR_L: 1;
+            uint8_t CONT_WAVE: 1;
+        }s;
+    }RF_SETUP;
+    uint8_t ADDR_WIDTH;
+    union
+    {
+        uint8_t byte;
+        struct
+        {
+            uint8_t ARD : 4;
+            uint8_t ARC : 4;
+        }s;
+    }SETUP_RETR;
+    uint8_t ReadFlag;
+} t_NRF_Setup;
 
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t ENAA_P0: 1;
-        uint8_t ENAA_P1: 1;
-        uint8_t ENAA_P2: 1;
-        uint8_t ENAA_P3: 1;
-        uint8_t ENAA_P4: 1;
-        uint8_t ENAA_P5: 1;
-    };
-}t_NFR_EN_AA;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t ERX_P0: 1;
-        uint8_t ERX_P1: 1;
-        uint8_t ERX_P2: 1;
-        uint8_t ERX_P3: 1;
-        uint8_t ERX_P4: 1;
-        uint8_t ERX_P5: 1;
-    };
-}t_NRF_EN_RXADDR;
-
-
-
-
-typedef enum{
-    NRF_AW_3_BYTES = 1u,
-    NRF_AW_4_BYTES = 2u,
-    NRF_AW_5_BYTES = 3u
-}e_NRF_Address_Width;
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t AW: 2;
-    };
-}t_NRF_SETUP_AW;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t ARC: 4;
-        uint8_t ARD: 4;
-    };
-}t_NRF_SETUP_RETR;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t RF_CH: 7;
-    };
-}t_NRF_RF_CH;
-
-
-
-
-typedef enum{
-    NRF_ePWR_MIN = 0u,
-    NRF_ePWR_LOW = 1u,
-    NRF_ePWR_HIGH = 2u,
-    NRF_ePWR_MAX = 3u
-}e_NRF_RF_Power;
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t LNA_HCURR: 1;
-        uint8_t RF_PW: 2;
-        uint8_t RF_DR: 1;
-        uint8_t PLL_LOCK: 1;
-    };
-}t_NRF_RF_SETUP;
-
-
-
-
-typedef enum{
-    NRF_ePIPE0 = 0u,
-    NRF_ePIPE1 = 1u,
-    NRF_ePIPE2 = 2u,
-    NRF_ePIPE3 = 3u,
-    NRF_ePIPE4 = 4u,
-    NRF_ePIPE5 = 5u,
-    NRF_eEMPTY = 7u
-
-}e_NRF_RX_P_No;
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t TX_FULL: 1;
-        uint8_t RX_P_NO: 3;
-        uint8_t MAX_RT: 1;
-        uint8_t TX_DS: 1;
-        uint8_t RX_DR: 1;
-    };
-}t_NRF_STATUS;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t ACR_CNT: 4;
-        uint8_t PLOS_CNT: 4;
-    };
-}t_NRF_OBSERVE_TX;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t CD: 1;
-    };
-}t_NRF_DC;
-
-
-
-
-typedef union {
-    uint8_t ByteArray[5];
-    struct {
-        uint8_t Byte0;
-        uint8_t Byte1;
-        uint8_t Byte2;
-        uint8_t Byte3;
-        uint8_t Byte4;
-    };
-}t_NRF_RX_ADDR_5_BYTES;
-typedef unsigned char t_NRF_RX_ADDR_1_BYTE;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t RX_EMPTY: 1;
-        uint8_t RX_FULL: 1;
-        uint8_t reserved: 2;
-        uint8_t TX_EMPTY: 1;
-        uint8_t TX_FULL: 1;
-        uint8_t TX_REUSE: 1;
-    };
-}t_NRF_FIFO_STATUS;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t DPL_P0: 1;
-        uint8_t DPL_P1: 1;
-        uint8_t DPL_P2: 1;
-        uint8_t DPL_P3: 1;
-        uint8_t DPL_P4: 1;
-        uint8_t DPL_P5: 1;
-    };
-}t_NRF_DYNPD;
-
-
-
-
-typedef union {
-    uint8_t byte;
-    struct {
-        uint8_t EN_DYN_ACK: 1;
-        uint8_t EN_ACK_PAY: 1;
-        uint8_t EN_DPL: 1;
-    };
-}t_NRF_FEATURE;
-
-extern uint8_t (*p_NRF_SPI_Exchange)(uint8_t);
+typedef struct
+{
+    uint8_t PIPE_SETUP;
+    uint8_t PIPE_ADDR[5];
+    uint8_t PAYLOAD_LEN;
+} t_NRF_RX_PIPE;
 
 void NRF24L01_Init(void);
-void NRF_SET_PRX(void);
+void NRF_SetPrimaryAs(uint8_t asPrimary);
+void NRF_SetRFChannel(uint8_t RF_Channel);
+void NRF_SetRFPower(uint8_t RF_Pow);
+void NRF_SetRFDataRate(uint8_t Datarate);
+void NRF_SetAddrWidth(uint8_t AddressWidth);
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 uint8_t NRF_Read_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 void NRF_IRQ_ISR_Handler(void);
-void Set_SPI_Handler(uint8_t (*SPI_Handler)(uint8_t));
+void NRF_Set_SPI_Handler(uint8_t (*SPI_Handler)(uint8_t));
 # 23 "main.c" 2
 
 
@@ -7553,7 +7415,6 @@ void main(void)
     AppInit();
     NRF24L01_Init();
     _delay((unsigned long)((10)*(8000000/4000.0)));
-    NRF_SET_PRX();
 
     while (1)
     {
@@ -7564,7 +7425,6 @@ void main(void)
 
             PWM1_DutyCycleSet(SineTab[cnter]);
             PWM1_LoadBufferSet();
-            p_NRF_SPI_Exchange(cnter);
             cnter++;
             Timeout_10ms = TimerTick1ms + 10u;
         }
