@@ -57,17 +57,18 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED="01 - SRC/01_Appli/Application.c" "01 - SRC/02_Soft_SPI/Soft_SPI.c" "01 - SRC/03_NRF24L01/NRF24L01.c" main.c "01 - SRC/05_MCC_16F1575/device_config.c" "01 - SRC/05_MCC_16F1575/eusart.c" "01 - SRC/05_MCC_16F1575/interrupt_manager.c" "01 - SRC/05_MCC_16F1575/mcc.c" "01 - SRC/05_MCC_16F1575/pin_manager.c" "01 - SRC/05_MCC_16F1575/pwm1.c" "01 - SRC/05_MCC_16F1575/tmr0.c" "01 - SRC/05_MCC_16F1575/tmr1.c"
+SOURCEFILES_QUOTED_IF_SPACED="01 - SRC/01_Appli/Application.c" "01 - SRC/02_Soft_SPI/Soft_SPI.c" "01 - SRC/03_NRF24L01/NRF24L01.c" "01 - SRC/05_MCC_16F1575/device_config.c" "01 - SRC/05_MCC_16F1575/eusart.c" "01 - SRC/05_MCC_16F1575/interrupt_manager.c" "01 - SRC/05_MCC_16F1575/mcc.c" "01 - SRC/05_MCC_16F1575/pin_manager.c" "01 - SRC/05_MCC_16F1575/pwm1.c" "01 - SRC/05_MCC_16F1575/tmr0.c" "01 - SRC/05_MCC_16F1575/tmr1.c" main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED="${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" ${OBJECTDIR}/main.p1 "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1"
-POSSIBLE_DEPFILES="${OBJECTDIR}/01 - SRC/01_Appli/Application.p1.d" "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1.d" "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1.d" ${OBJECTDIR}/main.p1.d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1.d"
+OBJECTFILES_QUOTED_IF_SPACED="${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1" ${OBJECTDIR}/main.p1
+POSSIBLE_DEPFILES="${OBJECTDIR}/01 - SRC/01_Appli/Application.p1.d" "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1.d" "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1.d" "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1.d" ${OBJECTDIR}/main.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/01\ -\ SRC/01_Appli/Application.p1 ${OBJECTDIR}/01\ -\ SRC/02_Soft_SPI/Soft_SPI.p1 ${OBJECTDIR}/01\ -\ SRC/03_NRF24L01/NRF24L01.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/device_config.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/eusart.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/interrupt_manager.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/mcc.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pin_manager.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pwm1.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr0.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr1.p1
+OBJECTFILES=${OBJECTDIR}/01\ -\ SRC/01_Appli/Application.p1 ${OBJECTDIR}/01\ -\ SRC/02_Soft_SPI/Soft_SPI.p1 ${OBJECTDIR}/01\ -\ SRC/03_NRF24L01/NRF24L01.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/device_config.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/eusart.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/interrupt_manager.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/mcc.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pin_manager.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pwm1.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr0.p1 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr1.p1 ${OBJECTDIR}/main.p1
 
 # Source Files
-SOURCEFILES=01 - SRC/01_Appli/Application.c 01 - SRC/02_Soft_SPI/Soft_SPI.c 01 - SRC/03_NRF24L01/NRF24L01.c main.c 01 - SRC/05_MCC_16F1575/device_config.c 01 - SRC/05_MCC_16F1575/eusart.c 01 - SRC/05_MCC_16F1575/interrupt_manager.c 01 - SRC/05_MCC_16F1575/mcc.c 01 - SRC/05_MCC_16F1575/pin_manager.c 01 - SRC/05_MCC_16F1575/pwm1.c 01 - SRC/05_MCC_16F1575/tmr0.c 01 - SRC/05_MCC_16F1575/tmr1.c
+SOURCEFILES=01 - SRC/01_Appli/Application.c 01 - SRC/02_Soft_SPI/Soft_SPI.c 01 - SRC/03_NRF24L01/NRF24L01.c 01 - SRC/05_MCC_16F1575/device_config.c 01 - SRC/05_MCC_16F1575/eusart.c 01 - SRC/05_MCC_16F1575/interrupt_manager.c 01 - SRC/05_MCC_16F1575/mcc.c 01 - SRC/05_MCC_16F1575/pin_manager.c 01 - SRC/05_MCC_16F1575/pwm1.c 01 - SRC/05_MCC_16F1575/tmr0.c 01 - SRC/05_MCC_16F1575/tmr1.c main.c
+
 
 
 CFLAGS=
@@ -97,7 +98,7 @@ ${OBJECTDIR}/01\ -\ SRC/01_Appli/Application.p1: 01\ -\ SRC/01_Appli/Application
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/01_Appli" 
 	@${RM} "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" "01 - SRC/01_Appli/Application.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" "01 - SRC/01_Appli/Application.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/01_Appli/Application".d "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -105,7 +106,7 @@ ${OBJECTDIR}/01\ -\ SRC/02_Soft_SPI/Soft_SPI.p1: 01\ -\ SRC/02_Soft_SPI/Soft_SPI
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/02_Soft_SPI" 
 	@${RM} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" "01 - SRC/02_Soft_SPI/Soft_SPI.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" "01 - SRC/02_Soft_SPI/Soft_SPI.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI".d "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -113,23 +114,15 @@ ${OBJECTDIR}/01\ -\ SRC/03_NRF24L01/NRF24L01.p1: 01\ -\ SRC/03_NRF24L01/NRF24L01
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/03_NRF24L01" 
 	@${RM} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" "01 - SRC/03_NRF24L01/NRF24L01.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" "01 - SRC/03_NRF24L01/NRF24L01.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01".d "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.p1.d 
-	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
-	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/device_config.p1: 01\ -\ SRC/05_MCC_16F1575/device_config.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" "01 - SRC/05_MCC_16F1575/device_config.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" "01 - SRC/05_MCC_16F1575/device_config.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -137,7 +130,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/eusart.p1: 01\ -\ SRC/05_MCC_16F1575/eusa
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" "01 - SRC/05_MCC_16F1575/eusart.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" "01 - SRC/05_MCC_16F1575/eusart.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -145,7 +138,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/interrupt_manager.p1: 01\ -\ SRC/05_MCC_1
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" "01 - SRC/05_MCC_16F1575/interrupt_manager.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" "01 - SRC/05_MCC_16F1575/interrupt_manager.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -153,7 +146,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/mcc.p1: 01\ -\ SRC/05_MCC_16F1575/mcc.c  
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" "01 - SRC/05_MCC_16F1575/mcc.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" "01 - SRC/05_MCC_16F1575/mcc.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -161,7 +154,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pin_manager.p1: 01\ -\ SRC/05_MCC_16F1575
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" "01 - SRC/05_MCC_16F1575/pin_manager.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" "01 - SRC/05_MCC_16F1575/pin_manager.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -169,7 +162,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pwm1.p1: 01\ -\ SRC/05_MCC_16F1575/pwm1.c
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" "01 - SRC/05_MCC_16F1575/pwm1.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" "01 - SRC/05_MCC_16F1575/pwm1.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -177,7 +170,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr0.p1: 01\ -\ SRC/05_MCC_16F1575/tmr0.c
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" "01 - SRC/05_MCC_16F1575/tmr0.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" "01 - SRC/05_MCC_16F1575/tmr0.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -185,16 +178,24 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr1.p1: 01\ -\ SRC/05_MCC_16F1575/tmr1.c
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1" "01 - SRC/05_MCC_16F1575/tmr1.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1" "01 - SRC/05_MCC_16F1575/tmr1.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/01\ -\ SRC/01_Appli/Application.p1: 01\ -\ SRC/01_Appli/Application.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/01_Appli" 
 	@${RM} "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" "01 - SRC/01_Appli/Application.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1" "01 - SRC/01_Appli/Application.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/01_Appli/Application".d "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/01_Appli/Application.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -202,7 +203,7 @@ ${OBJECTDIR}/01\ -\ SRC/02_Soft_SPI/Soft_SPI.p1: 01\ -\ SRC/02_Soft_SPI/Soft_SPI
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/02_Soft_SPI" 
 	@${RM} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" "01 - SRC/02_Soft_SPI/Soft_SPI.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1" "01 - SRC/02_Soft_SPI/Soft_SPI.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI".d "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/02_Soft_SPI/Soft_SPI.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -210,23 +211,15 @@ ${OBJECTDIR}/01\ -\ SRC/03_NRF24L01/NRF24L01.p1: 01\ -\ SRC/03_NRF24L01/NRF24L01
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/03_NRF24L01" 
 	@${RM} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" "01 - SRC/03_NRF24L01/NRF24L01.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1" "01 - SRC/03_NRF24L01/NRF24L01.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01".d "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/03_NRF24L01/NRF24L01.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.p1.d 
-	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
-	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/device_config.p1: 01\ -\ SRC/05_MCC_16F1575/device_config.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" "01 - SRC/05_MCC_16F1575/device_config.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1" "01 - SRC/05_MCC_16F1575/device_config.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/device_config.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -234,7 +227,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/eusart.p1: 01\ -\ SRC/05_MCC_16F1575/eusa
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" "01 - SRC/05_MCC_16F1575/eusart.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1" "01 - SRC/05_MCC_16F1575/eusart.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/eusart.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -242,7 +235,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/interrupt_manager.p1: 01\ -\ SRC/05_MCC_1
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" "01 - SRC/05_MCC_16F1575/interrupt_manager.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1" "01 - SRC/05_MCC_16F1575/interrupt_manager.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/interrupt_manager.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -250,7 +243,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/mcc.p1: 01\ -\ SRC/05_MCC_16F1575/mcc.c  
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" "01 - SRC/05_MCC_16F1575/mcc.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1" "01 - SRC/05_MCC_16F1575/mcc.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/mcc.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -258,7 +251,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pin_manager.p1: 01\ -\ SRC/05_MCC_16F1575
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" "01 - SRC/05_MCC_16F1575/pin_manager.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1" "01 - SRC/05_MCC_16F1575/pin_manager.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pin_manager.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -266,7 +259,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/pwm1.p1: 01\ -\ SRC/05_MCC_16F1575/pwm1.c
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" "01 - SRC/05_MCC_16F1575/pwm1.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1" "01 - SRC/05_MCC_16F1575/pwm1.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/pwm1.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -274,7 +267,7 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr0.p1: 01\ -\ SRC/05_MCC_16F1575/tmr0.c
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" "01 - SRC/05_MCC_16F1575/tmr0.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1" "01 - SRC/05_MCC_16F1575/tmr0.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr0.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -282,9 +275,17 @@ ${OBJECTDIR}/01\ -\ SRC/05_MCC_16F1575/tmr1.p1: 01\ -\ SRC/05_MCC_16F1575/tmr1.c
 	@${MKDIR} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575" 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1".d 
 	@${RM} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1" 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1" "01 - SRC/05_MCC_16F1575/tmr1.c" 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1" "01 - SRC/05_MCC_16F1575/tmr1.c" 
 	@-${MV} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1".d "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1".d 
 	@${FIXDEPS} "${OBJECTDIR}/01 - SRC/05_MCC_16F1575/tmr1.p1".d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -DXPRJ_PIC16F1575=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
@@ -305,13 +306,13 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.map  -D__DEBUG=1  -DXPRJ_PIC16F1575=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.map  -D__DEBUG=1  -DXPRJ_PIC16F1575=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	@${RM} dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.hex 
 	
 else
 dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.map  -DXPRJ_PIC16F1575=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.map  -DXPRJ_PIC16F1575=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"01 - SRC" -I"../../../../../../../../Program Files (x86)/Microchip/xc8/pic/include" -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -o dist/${CND_CONF}/${IMAGE_TYPE}/NRF24L01_Lib.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 endif
 

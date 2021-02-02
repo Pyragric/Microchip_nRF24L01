@@ -6,3 +6,12 @@ NRF24L01_Lib.X/nbproject/.mk
 NRF24L01_Lib.X/nbproject/.bash
 NRF24L01_Lib.X/nbproject/.properties
 NRF24L01_Lib.X/nbproject/private
+*.i
+
+*.p1
+
+*.sym
+
+*.sdb
+
+*.o
