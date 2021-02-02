@@ -1,9 +1,15 @@
 
 Memory Summary:
+<<<<<<< Updated upstream
     Program space        used   3A9h (   937) of  2000h words   ( 11.4%)
     Data space           used    3Ah (    58) of   3F0h bytes   (  5.8%)
     EEPROM space         None available
     Data stack space     used     0h (     0) of   3B6h bytes   (  0.0%)
+=======
+    Program space        used   312h (   786) of  2000h words   (  9.6%)
+    Data space           used    25h (    37) of   3F0h bytes   (  3.7%)
+    EEPROM space         None available
+>>>>>>> Stashed changes
     Configuration bits   used     2h (     2) of     2h words   (100.0%)
     ID Location space    used     0h (     0) of     4h bytes   (  0.0%)
 
