@@ -15,3 +15,5 @@ NRF24L01_Lib.X/nbproject/private
 *.sdb
 
 *.o
+
+*.properties

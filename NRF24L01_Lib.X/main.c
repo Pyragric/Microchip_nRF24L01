@@ -37,6 +37,8 @@ void main(void)
     PWM1_Start();
     AppInit();
     NRF24L01_Init();
+    NRF_OpenReadingPipe(0, "Node0", 8, 0, 1);
+    NRF_SetPrimaryAs(NRF_PRX);
     __delay_ms(10);
     
     while (1)

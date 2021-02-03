@@ -24,8 +24,8 @@
 /*------------------------------------------------*/
 #define CMD_NRF_R_REGISTER          0x00u
 #define CMD_NRF_W_REGISTER          0x20u
-#define CMD_NRF_R_RX_PAYLOA         0x61u
-#define CMD_NRF_W_TX_REGISTR        0xA0u
+#define CMD_NRF_R_RX_PAYLOAD        0x61u
+#define CMD_NRF_W_TX_REGISTER       0xA0u
 #define CMD_NRF_FLUSH_TX            0xE1u
 #define CMD_NRF_FLUSH_RX            0xE2u
 #define CMD_NRF_REUSE_TX_PL         0xE3u
@@ -33,7 +33,7 @@
 #define CMD_NRF_R_RX_PL_WID         0x60u
 #define CMD_NRF_W_ACK_PAYLOAD       0xA8u
 #define CMD_NRF_W_TX_PAYLOAD_NO_ACK 0xB0u
-#define CMD_NRF_NOP                 0x00u
+#define CMD_NRF_NOP                 0xFFu
 
 /*------------------------------------------------*/
 /*              NRF24L01 Register Addresses       */
@@ -70,6 +70,7 @@
 /*------------------------------------------------*/
 /*        CONFIG        */
 #define NRF_PRX                     0x01u
+#define NRF_PTX                     0x00u
 #define NRF_PWR_UP                  0x02u
 #define NRF_CRC_2BYTES              0x04u
 #define NRF_IRQ_MAX_RT              0x60u
@@ -171,12 +172,16 @@ typedef struct
 void NRF24L01_Init(void);
 void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t * PipeAddr, uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable);
 void NRF_PipeEnable(uint8_t PipeNo);
+void NRF_PipeDisable(uint8_t PipeNo);
 void NRF_PipeEnableAA(uint8_t PipeNo);
+void NRF_PipeDisableAA(uint8_t PipeNo);
 void NRF_SetPrimaryAs(uint8_t asPrimary);
 void NRF_SetRFChannel(uint8_t RF_Channel);
 void NRF_SetRFPower(uint8_t RF_Pow);
 void NRF_SetRFDataRate(uint8_t Datarate);
 void NRF_SetAddrWidth(uint8_t AddressWidth);
+void NRF_StartListening(void);
+void NRF_ReadData(uint8_t pipe, uint8_t *DataArray, uint8_t PayloadLength);
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 uint8_t NRF_Read_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 void NRF_IRQ_ISR_Handler(void);

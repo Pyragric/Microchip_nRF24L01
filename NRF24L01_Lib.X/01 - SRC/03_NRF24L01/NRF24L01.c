@@ -54,6 +54,14 @@ void NRF_PipeEnable(uint8_t PipeNo)
     NRF_Write_Register(REG_NRF_EN_RXADDR, &EN, 1u);
 }
 
+void NRF_PipeDisable(uint8_t PipeNo)
+{
+    uint8_t EN;
+    NRF_Read_Register(REG_NRF_EN_RXADDR, &EN, 1u);
+    EN &= (1u << PipeNo) ^ 0xFFu;
+    NRF_Write_Register(REG_NRF_EN_RXADDR, &EN, 1u);
+}
+
 void NRF_PipeEnableAA(uint8_t PipeNo)
 {
     uint8_t AA;
@@ -62,9 +70,18 @@ void NRF_PipeEnableAA(uint8_t PipeNo)
     NRF_Write_Register(REG_NRF_EN_AA, &AA, 1u);
 }
 
+void NRF_PipeDisableAA(uint8_t PipeNo)
+{
+    uint8_t AA;
+    NRF_Read_Register(REG_NRF_EN_AA, &AA, 1u);
+    AA &= (1u << PipeNo) ^ 0xFFu;
+    NRF_Write_Register(REG_NRF_EN_AA, &AA, 1u);
+}
+
 void NRF_SetPrimaryAs(uint8_t asPrimary)
 {
-    NRFChip.CONFIG.s.PWR_UP = asPrimary;
+    NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
+    NRFChip.CONFIG.s.PRIM_RX = asPrimary;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
 }
 
@@ -76,13 +93,16 @@ void NRF_SetRFChannel(uint8_t RF_Channel)
 
 void NRF_SetRFPower(uint8_t RF_Pow)
 {
+    NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
     NRFChip.RF_SETUP.s.PWR = (RF_Pow > 3u) ? 3u : RF_Pow;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
 }
 
 void NRF_SetRFDataRate(uint8_t Datarate)
 {
-    NRFChip.RF_SETUP.s.DR_L = (Datarate > 1u) ? 1u : 0u;
+    NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
+    NRFChip.RF_SETUP.s.DR_L = Datarate & 0xFD;
+    NRFChip.RF_SETUP.s.DR_H = Datarate & 0xFE;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
 }
 
@@ -92,6 +112,32 @@ void NRF_SetAddrWidth(uint8_t AddressWidth)
     AddressWidth = (AddressWidth > 3u) ? 3u : 0u;
     NRFChip.ADDR_WIDTH = AddressWidth;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
+}
+
+void NRF_StartListening(void)
+{
+    NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
+    NRFChip.CONFIG.s.PWR_UP = 1u;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
+    NRF_PIN_CE = 1;
+}
+
+void NRF_StopListening(void)
+{
+    NRF_PIN_CE = 0;
+}
+
+void NRF_ReadData(uint8_t pipe, uint8_t *DataArray, uint8_t PayloadLength)
+{
+    uint8_t Status = 0;
+    uint8_t i;
+    NRF_PIN_CSN = 0;
+    Status = p_NRF_SPI_Exchange(CMD_NRF_R_RX_PAYLOAD);
+    for (i = 0; i < PayloadLength; i++)
+    {
+        DataArray[i] = p_NRF_SPI_Exchange(CMD_NRF_NOP);
+    }
+    NRF_PIN_CSN = 1;
 }
 
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
@@ -114,7 +160,7 @@ uint8_t NRF_Read_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
     Status = p_NRF_SPI_Exchange(CMD_NRF_R_REGISTER | Register);
     while (Length--)
     {
-        *Bytes++ = p_NRF_SPI_Exchange(0xFF);
+        *Bytes++ = p_NRF_SPI_Exchange(CMD_NRF_NOP);
     }
     NRF_PIN_CSN = 1;
     return Status;
