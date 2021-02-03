@@ -163,12 +163,15 @@ typedef struct
 
 typedef struct
 {
-    uint8_t PIPE_SETUP;
+    uint8_t PAY_LEN;
     uint8_t PIPE_ADDR[5];
-    uint8_t PAYLOAD_LEN;
 } t_NRF_RX_PIPE;
 
+
 void NRF24L01_Init(void);
+void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t * PipeAddr, uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable);
+void NRF_PipeEnable(uint8_t PipeNo);
+void NRF_PipeEnableAA(uint8_t PipeNo);
 void NRF_SetPrimaryAs(uint8_t asPrimary);
 void NRF_SetRFChannel(uint8_t RF_Channel);
 void NRF_SetRFPower(uint8_t RF_Pow);

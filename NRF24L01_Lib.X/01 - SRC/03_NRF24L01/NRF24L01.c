@@ -1,6 +1,8 @@
+#include <stdint.h>
 #include "NRF24L01.h"
 
 static uint8_t (*p_NRF_SPI_Exchange)(uint8_t);
+static t_NRF_RX_PIPE NFR_RxPipes[6];
 static t_NRF_Setup NRFChip;
 
 void NRF24L01_Init(void)
@@ -15,6 +17,49 @@ void NRF24L01_Init(void)
     NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
     NRFChip.STATUS.byte = NRF_Read_Register(REG_NRF_TX_ADDR, &NRFChip.TX_ADDR, 5u);
     NRFChip.ReadFlag = 1u;
+}
+
+void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t * PipeAddr, uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable)
+{
+    uint8_t i;
+    uint8_t AW = NRFChip.ADDR_WIDTH + 2u;
+    
+    NFR_RxPipes[PipeNo].PAY_LEN = PayloadLength;
+    
+    for (i = 0; i < AW; i++)
+    {
+        NFR_RxPipes[PipeNo].PIPE_ADDR[i] = PipeAddr[i];
+    }
+    if (Enable != 0u)
+    {
+        NRF_PipeEnable(PipeNo);
+    }
+    else { /* Do Nothing */ }
+    
+    if (AutoAck != 0u)
+    {
+        NRF_PipeEnableAA(PipeNo);
+    }
+    else { /* Do Nothing */ }
+    
+    NRF_Write_Register(REG_NRF_RX_ADDR_P0 + PipeNo, NFR_RxPipes[PipeNo].PIPE_ADDR, (PipeNo > 1u) ? 1u : AW);
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RX_PW_P0 + PipeNo, &NFR_RxPipes[PipeNo].PAY_LEN, 1u);
+}
+
+void NRF_PipeEnable(uint8_t PipeNo)
+{
+    uint8_t EN;
+    NRF_Read_Register(REG_NRF_EN_RXADDR, &EN, 1u);
+    EN |= 1u << PipeNo;
+    NRF_Write_Register(REG_NRF_EN_RXADDR, &EN, 1u);
+}
+
+void NRF_PipeEnableAA(uint8_t PipeNo)
+{
+    uint8_t AA;
+    NRF_Read_Register(REG_NRF_EN_AA, &AA, 1u);
+    AA |= 1u << PipeNo;
+    NRF_Write_Register(REG_NRF_EN_AA, &AA, 1u);
 }
 
 void NRF_SetPrimaryAs(uint8_t asPrimary)
