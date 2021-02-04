@@ -30,6 +30,7 @@ void main(void)
     uint16_t Timeout_100ms = 0;
     uint16_t Timeout_10ms = 0;
     uint8_t cnter = 0;
+    uint8_t AppPayload[8] = {0};
     // initialize the device
     SYSTEM_Initialize();
     INTERRUPT_GlobalInterruptEnable();
@@ -37,9 +38,19 @@ void main(void)
     PWM1_Start();
     AppInit();
     NRF24L01_Init();
-    NRF_OpenReadingPipe(0, "Node0", 8, 0, 1);
+    NRF_PrintDetails();
+    UART_crlf();
+    NRF_SetAddrWidth(5u);
+    NRF_SetRFDataRate(NRF_1MBPS);
+    NRF_SetRFPower(NRF_PWR_MAX);
+    NRF_SetRFChannel(100);
+    NRF_OpenReadingPipe(0, "Node0", 8, 1, 1);
+    NRF_SetTxAddr("Node0");
     NRF_SetPrimaryAs(NRF_PRX);
+    NRF_SetMaskIRQ(NRF_IRQ_RX_DR);
+    NRF_StartListening();
     __delay_ms(10);
+    NRF_PrintDetails();
     
     while (1)
     {
@@ -51,6 +62,13 @@ void main(void)
             PWM1_DutyCycleSet(SineTab[cnter]);
             PWM1_LoadBufferSet();
             cnter++;
+            if (NRF_Available(0))
+            {
+                PrintUART("New data available: ");
+                NRF_ReadPayload(AppPayload, 8u);
+                PrintPayload(AppPayload, 8u, UART_HEX);
+            }
+            NRF_StatusHandler();
             Timeout_10ms = TICK_1MS + 10u;
         }
         else
@@ -75,8 +93,7 @@ void main(void)
             /*-----------------------------*/
             /*         1000MS TASK         */
             /*-----------------------------*/
-//            PrintUART("Tik\r\n");
-            
+//            UART_PNbase(NRF_GetStatus(), UART_BIN, "\r\n");
             Timeout_1s = TICK_1MS + 1000u;
         }
         else

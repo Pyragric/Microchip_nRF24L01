@@ -23,6 +23,23 @@ void PrintUART (char *string)
     }
 }
 
+void PrintPayload(uint8_t *Buffer, uint8_t Length, uint8_t format)
+{
+    uint8_t i = 0;
+    for (i = 0; i < Length; i++)
+    {
+        if (format == UART_CHAR)
+        {
+            EUSART_Write(Buffer[i]);
+        }
+        else
+        {
+            UART_PNbase(Buffer[i], format, " ");
+        }
+    }
+    UART_crlf();
+}
+
 void UART_PNbase(uint32_t Nbre, uint8_t Base, char *string)
 {
     uint8_t i = 0u;

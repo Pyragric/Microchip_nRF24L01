@@ -10,13 +10,47 @@ void NRF24L01_Init(void)
     NRF_Set_SPI_Handler(SoftSPI_Exchange);
     NRF_PIN_CE = 0;
     NRF_PIN_CSN = 1;
+}
+
+void NRF_PrintDetails(void)
+{
+    uint8_t var;
+    char baudrate[3][10] = {"1Mbps ", "2Mbps ", "250Kbps "};
+    char power[4][8] = {"-18dBm ", "-12dBm ", "-6dBm ", "0dBm"};
     NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
     NRF_Read_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
     NRF_Read_Register(REG_NRF_SETUP_RETR, &NRFChip.SETUP_RETR.byte, 1u);
     NRF_Read_Register(REG_NRF_RF_CH, &NRFChip.RF_CHANNEL, 1u);
     NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
-    NRFChip.STATUS.byte = NRF_Read_Register(REG_NRF_TX_ADDR, &NRFChip.TX_ADDR, 5u);
-    NRFChip.ReadFlag = 1u;
+    NRF_Read_Register(REG_NRF_TX_ADDR, NRFChip.TX_ADDR, 5u);
+    NRFChip.STATUS.byte = NRF_Read_Register(REG_NRF_RX_ADDR_P1, NFR_RxPipes[1].PIPE_ADDR, 5u);
+    
+    var = NRFChip.RF_SETUP.s.DR_L << 1u | NRFChip.RF_SETUP.s.DR_H;
+    
+    PrintUART("Config: ");
+    UART_PNbase(NRFChip.CONFIG.byte, UART_BIN, "\r\n");
+    PrintUART("Address Width: ");
+    UART_PNbase(NRFChip.ADDR_WIDTH + 2u, UART_DEC, " bytes\r\n");
+    PrintUART("Automatic Retransmission: ");
+    UART_PNbase(NRFChip.SETUP_RETR.s.ARC, UART_DEC, "time(s) ");
+    UART_PNbase(NRFChip.SETUP_RETR.s.ARD * (uint32_t)250, UART_DEC, "us\r\n");
+    PrintUART("RF Channel freq: ");
+    UART_PNbase(NRFChip.RF_CHANNEL + 2400u, UART_DEC, "MHz\r\n");
+    PrintUART("RF setup: ");
+    PrintUART(baudrate[var]);
+    PrintUART(power[NRFChip.RF_SETUP.s.PWR]);
+    UART_crlf();
+    PrintUART("TX ADDR: 0x");
+    for (var = 0; var < 5; var ++)
+    {
+        UART_PNbase(NRFChip.TX_ADDR[var], UART_HEX, "");
+    }
+    PrintUART("\r\nRX PIPE1 ADDR: 0x");
+    for (var = 0; var < 5; var ++)
+    {
+        UART_PNbase(NFR_RxPipes[1].PIPE_ADDR[var], UART_HEX, "");
+    }
+    UART_crlf();
 }
 
 void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t * PipeAddr, uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable)
@@ -44,6 +78,11 @@ void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t * PipeAddr, uint8_t PayloadLeng
     
     NRF_Write_Register(REG_NRF_RX_ADDR_P0 + PipeNo, NFR_RxPipes[PipeNo].PIPE_ADDR, (PipeNo > 1u) ? 1u : AW);
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RX_PW_P0 + PipeNo, &NFR_RxPipes[PipeNo].PAY_LEN, 1u);
+}
+
+void NRF_SetTxAddr(uint8_t *PipeAddr)
+{
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_TX_ADDR, PipeAddr, 5u);
 }
 
 void NRF_PipeEnable(uint8_t PipeNo)
@@ -127,17 +166,44 @@ void NRF_StopListening(void)
     NRF_PIN_CE = 0;
 }
 
-void NRF_ReadData(uint8_t pipe, uint8_t *DataArray, uint8_t PayloadLength)
+uint8_t NRF_Available(uint8_t PipeNo)
 {
-    uint8_t Status = 0;
+    uint8_t IsAvailable = 0;
+    NRF_Read_Register(REG_NRF_STATUS, &NRFChip.STATUS.byte, 1u);
+    if ((NRFChip.STATUS.s.RX_P_NO == PipeNo) && (NRFChip.STATUS.s.RX_DR == 1))
+    {
+        IsAvailable = 1;
+    }
+    return IsAvailable;
+}
+
+uint8_t NRF_GetStatus(void)
+{
+    NRF_PIN_CSN = 0;
+    NRFChip.STATUS.byte = p_NRF_SPI_Exchange(CMD_NRF_NOP);
+    NRF_PIN_CSN = 1;
+    return NRFChip.STATUS.byte;
+}
+
+void NRF_SetMaskIRQ(uint8_t IRQMask)
+{
+    NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
+    &NRFChip.CONFIG.s.IRQ_MASK = IRQMask & 0x07;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
+}
+
+void NRF_ReadPayload(uint8_t *Payload, uint8_t PayloadLength)
+{
     uint8_t i;
     NRF_PIN_CSN = 0;
-    Status = p_NRF_SPI_Exchange(CMD_NRF_R_RX_PAYLOAD);
+    NRFChip.STATUS.byte = p_NRF_SPI_Exchange(CMD_NRF_R_RX_PAYLOAD);
     for (i = 0; i < PayloadLength; i++)
     {
-        DataArray[i] = p_NRF_SPI_Exchange(CMD_NRF_NOP);
+        Payload[i] = p_NRF_SPI_Exchange(CMD_NRF_NOP);
     }
     NRF_PIN_CSN = 1;
+    NRFChip.STATUS.s.RX_DR = 1u;
+    NRF_Write_Register(REG_NRF_STATUS, &NRFChip.STATUS.byte, 1u);
 }
 
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
@@ -164,6 +230,29 @@ uint8_t NRF_Read_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
     }
     NRF_PIN_CSN = 1;
     return Status;
+}
+
+void NRF_StatusHandler(void)
+{
+    u_NRF_Status StatusReg;
+    u_NRF_FIFO_STATUS NRF_Fifo;
+    StatusReg.STATUS = NRF_Read_Register(REG_NRF_FIFO_STATUS, &NRF_Fifo, 1u);
+    switch (StatusReg.STATUS >> 4)
+    {
+        case 1:     /* MAX_RT on going */
+            break;
+        case 2:     /* TX_DS on going */
+            break;
+        case 4:     /* RX_DR on going */
+            if (NRF_Fifo.b.RX_FULL == 1u)
+            {
+                p_NRF_SPI_Exchange(CMD_NRF_FLUSH_RX);
+            }
+            else { /* Do nothing */ }
+            break;
+        default:
+            break;
+    }
 }
 
 void NRF_IRQ_ISR_Handler(void)
