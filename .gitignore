@@ -18,3 +18,5 @@ NRF24L01_Lib.X/nbproject/private
 
 *.properties
 *.mk
+
+*.bash
