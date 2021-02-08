@@ -20,3 +20,5 @@ NRF24L01_Lib.X/nbproject/private
 *.mk
 
 *.bash
+
+*.d

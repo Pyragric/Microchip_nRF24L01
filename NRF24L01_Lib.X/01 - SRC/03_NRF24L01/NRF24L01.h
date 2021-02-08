@@ -69,14 +69,11 @@
 /*              NRF24L01 Register bits            */
 /*------------------------------------------------*/
 /*        CONFIG        */
-#define NRF_PRX                     0x01u
-#define NRF_PTX                     0x00u
-#define NRF_PWR_UP                  0x02u
-#define NRF_CRC_2BYTES              0x04u
+#define NRF_PRX                     1u
+#define NRF_PTX                     0u
 #define NRF_IRQ_MAX_RT              1u
 #define NRF_IRQ_TX_DS               2u
 #define NRF_IRQ_RX_DR               4u
-#define NRF_IRQ_NONE                0x70u
 
 /*    ADDRESS_WIDTH     */
 #define NRF_ADDR_3BYTES             0x01u
@@ -213,6 +210,7 @@ uint8_t NRF_Available(uint8_t PipeNo);
 uint8_t NRF_GetStatus(void);
 void NRF_SetMaskIRQ(uint8_t IRQMask);
 void NRF_ReadPayload(uint8_t *Payload, uint8_t PayloadLength);
+void NRF_WritePayload(uint8_t *Payload, uint8_t PayloadLength);
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 uint8_t NRF_Read_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length);
 void NRF_StatusHandler(void);

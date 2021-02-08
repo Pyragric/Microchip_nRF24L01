@@ -47,7 +47,7 @@
 */
 
 #include "pin_manager.h"
-
+#include "../03_NRF24L01/NRF24L01.h"
 
 
 
@@ -113,7 +113,7 @@ void PIN_MANAGER_Initialize(void)
 
 
     // register default IOC callback functions at runtime; use these methods to register a custom function
-    IOCAF5_SetInterruptHandler(IOCAF5_DefaultInterruptHandler);
+    IOCAF5_SetInterruptHandler(NRF_IRQ_ISR_Handler);
    
     // Enable IOCI interrupt 
     INTCONbits.IOCIE = 1; 

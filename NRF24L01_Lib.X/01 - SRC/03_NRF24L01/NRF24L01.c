@@ -169,7 +169,7 @@ void NRF_StopListening(void)
 uint8_t NRF_Available(uint8_t PipeNo)
 {
     uint8_t IsAvailable = 0;
-    NRF_Read_Register(REG_NRF_STATUS, &NRFChip.STATUS.byte, 1u);
+    NRF_GetStatus();
     if ((NRFChip.STATUS.s.RX_P_NO == PipeNo) && (NRFChip.STATUS.s.RX_DR == 1))
     {
         IsAvailable = 1;
@@ -188,7 +188,7 @@ uint8_t NRF_GetStatus(void)
 void NRF_SetMaskIRQ(uint8_t IRQMask)
 {
     NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
-    &NRFChip.CONFIG.s.IRQ_MASK = IRQMask & 0x07;
+    NRFChip.CONFIG.s.IRQ_MASK = IRQMask & 0x07;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
 }
 
@@ -204,6 +204,21 @@ void NRF_ReadPayload(uint8_t *Payload, uint8_t PayloadLength)
     NRF_PIN_CSN = 1;
     NRFChip.STATUS.s.RX_DR = 1u;
     NRF_Write_Register(REG_NRF_STATUS, &NRFChip.STATUS.byte, 1u);
+}
+
+void NRF_WritePayload(uint8_t *Payload, uint8_t PayloadLength)
+{
+    uint8_t i;
+    NRF_PIN_CSN = 0;
+    NRFChip.STATUS.byte = p_NRF_SPI_Exchange(CMD_NRF_W_TX_REGISTER);
+    for (i = 0; i < PayloadLength; i++)
+    {
+        p_NRF_SPI_Exchange(Payload[i]);
+    }
+    NRF_PIN_CE = 1;
+    __delay_us(25);
+    NRF_PIN_CE = 0;
+    NRF_PIN_CSN = 1;
 }
 
 uint8_t NRF_Write_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
