@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "../03_NRF24L01/NRF24L01.h"
 
 const char *g = "0123456789ABCDEF";
 const uint8_t SineTab[256] = {
@@ -8,9 +9,70 @@ const uint8_t SineTab[256] = {
 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x02, 0x02, 0x03, 0x04, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0C, 0x0D, 0x0F, 0x10, 0x12, 0x13, 0x15, 0x17, 0x19, 0x1B, 0x1D, 0x1F, 0x21, 0x23, 0x25, 0x27, 0x29, 0x2C, 0x2E, 0x31, 0x33, 0x36, 0x38, 0x3B, 0x3D, 0x40, 0x43, 0x46, 0x49, 0x4B, 0x4E, 0x51, 0x54, 0x57, 0x5A, 0x5D, 0x60, 0x63, 0x66, 0x69, 0x6C, 0x6F, 0x73, 0x76, 0x79, 0x7C, 0x7F,
 };
 
+static uint8_t CircularBuffer[QUEUE_BUF_SIZE] = {0};
+t_Circular_queue MyQueue;
+
 void AppInit(void)
 {
     PrintUART("Initialization\r\n");
+    NRF24L01_Init();
+    NRF_SetAddrWidth(5u);
+    NRF_SetRFDataRate(NRF_1MBPS);
+    NRF_SetRFPower(NRF_PWR_MAX);
+    NRF_SetRFChannel(100);
+    NRF_OpenReadingPipe(0, "Node0", 8, 1, 1);
+    NRF_SetTxAddr("Node1");
+    NRF_SetPrimaryAs(NRF_PRX);
+    NRF_SetMaskIRQ(NRF_IRQ_RX_DR);
+    NRF_StartListening();
+}
+
+void QueueInit(void)
+{
+    MyQueue.Buffer = CircularBuffer;
+    MyQueue.BufferSize = QUEUE_BUF_SIZE;
+    MyQueue.Front = -1;
+    MyQueue.Rear = -1;
+}
+
+uint8_t IsFull(void)
+{
+    return ((MyQueue.Front == (MyQueue.Rear + 1)) || ((MyQueue.Front == 0) && (MyQueue.Rear == (MyQueue.BufferSize - 1)))) ? 1u : 0u;
+}
+
+uint8_t IsEmpty(void)
+{
+    return (MyQueue.Front == -1) ? 1u : 0u;
+}
+
+void enQueue(uint8_t element)
+{
+    if (IsFull() == 0u)
+    {
+        MyQueue.Front += (MyQueue.Front == -1) ? 1 : 0;
+        MyQueue.Rear = (MyQueue.Rear + 1) % MyQueue.BufferSize;
+        MyQueue.Buffer[MyQueue.Rear] = element;
+    }
+    else { /* Do Nothing */ }
+}
+
+uint8_t deQueue(void)
+{
+    uint8_t element = 0u;
+    if (IsEmpty() == 0u)
+    {
+        element = MyQueue.Buffer[MyQueue.Front];
+        if (MyQueue.Front == MyQueue.Rear)
+        {
+            MyQueue.Front = -1;
+            MyQueue.Rear = -1;
+        }
+        else
+        {
+            MyQueue.Front = (MyQueue.Front + 1) % MyQueue.BufferSize;
+        }
+    }
+    return element;
 }
 
 void PrintUART (char *string)

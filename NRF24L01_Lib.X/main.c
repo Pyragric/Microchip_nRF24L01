@@ -36,21 +36,7 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     PWM1_Start();
     AppInit();
-    
-    NRF24L01_Init();
-    NRF_PrintDetails();
-    UART_crlf();
-    NRF_SetAddrWidth(5u);
-    NRF_SetRFDataRate(NRF_1MBPS);
-    NRF_SetRFPower(NRF_PWR_MAX);
-    NRF_SetRFChannel(100);
-    NRF_OpenReadingPipe(0, "Node0", 8, 1, 1);
-    NRF_SetTxAddr("Node1");
-    NRF_SetPrimaryAs(NRF_PRX);
-    NRF_SetMaskIRQ(NRF_IRQ_RX_DR);
-    NRF_StartListening();
     __delay_ms(10);
-    NRF_PrintDetails();
     
     while (1)
     {
@@ -62,10 +48,11 @@ void main(void)
             if (NRF_Available(0))
             {
                 NRF_ReadPayload(AppPayload, 8u);
-                PWM1_DutyCycleSet(AppPayload[0]);
-                PWM1_LoadBufferSet();
             }
             NRF_StatusHandler();
+            enQueue(AppPayload[0]);
+            PWM1_DutyCycleSet(deQueue());
+            PWM1_LoadBufferSet();
             Timeout_10ms = TICK_1MS + 10u;
         }
         else
