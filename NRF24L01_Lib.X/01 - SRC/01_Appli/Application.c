@@ -75,6 +75,40 @@ uint8_t deQueue(void)
     return element;
 }
 
+void LinearTransiant(uint8_t NewValue, uint8_t OldValue)
+{
+    uint16_t diff;
+    uint8_t a, i;
+    float Slope;
+    if (NewValue != OldValue)
+    {
+        if (NewValue > OldValue)
+        {
+            diff = NewValue - OldValue;
+            Slope = (float)diff / 50.0;
+            for (i = 0; i < 50; i++)
+            {
+                a = (uint8_t)(i * Slope) + OldValue;
+                enQueue(a);
+            }
+            enQueue(NewValue);
+        }
+        else
+        {
+            diff = OldValue - NewValue;
+            Slope = (float)diff / 50.0;
+            for (i = 0; i < 50; i++)
+            {
+                a = OldValue - (uint8_t)(i * Slope);
+                enQueue(a);
+            }
+            enQueue(NewValue);
+        }
+    }
+    else { /* Do Nothing */ }
+    
+}
+
 void PrintUART (char *string)
 {
     uint16_t i = 0;

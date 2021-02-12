@@ -31,6 +31,7 @@ uint8_t IsFull(void);
 uint8_t IsEmpty(void);
 void enQueue(uint8_t element);
 uint8_t deQueue(void);
+void LinearTransiant(uint8_t NewValue, uint8_t OldValue);
 void PrintUART (char *string);
 void PrintPayload(uint8_t *Buffer, uint8_t Length, uint8_t format);
 void UART_PNbase (uint32_t Nbre, uint8_t Base, char *string);
