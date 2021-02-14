@@ -10,7 +10,7 @@ const uint8_t SineTab[256] = {
 };
 
 static uint8_t CircularBuffer[QUEUE_BUF_SIZE] = {0};
-t_Circular_queue MyQueue;
+static t_Circular_queue MyQueue;
 
 void AppInit(void)
 {
@@ -43,6 +43,20 @@ uint8_t IsFull(void)
 uint8_t IsEmpty(void)
 {
     return (MyQueue.Front == -1) ? 1u : 0u;
+}
+
+uint8_t IsFreeAmount(uint8_t Amount)
+{
+    uint8_t diff;
+    if (MyQueue.Rear < MyQueue.Front)
+    {
+        diff = MyQueue.Rear + (QUEUE_BUF_SIZE - MyQueue.Front);
+    }
+    else
+    {
+        diff = MyQueue.Rear - MyQueue.Front;
+    }
+    return (Amount > diff) ? 0u : 1u;
 }
 
 void enQueue(uint8_t element)
@@ -86,7 +100,7 @@ void LinearTransiant(uint8_t NewValue, uint8_t OldValue)
         {
             diff = NewValue - OldValue;
             Slope = (float)diff / 50.0;
-            for (i = 0; i < 50; i++)
+            for (i = 1; i < 50; i++)
             {
                 a = (uint8_t)(i * Slope) + OldValue;
                 enQueue(a);
@@ -97,7 +111,7 @@ void LinearTransiant(uint8_t NewValue, uint8_t OldValue)
         {
             diff = OldValue - NewValue;
             Slope = (float)diff / 50.0;
-            for (i = 0; i < 50; i++)
+            for (i = 1; i < 50; i++)
             {
                 a = OldValue - (uint8_t)(i * Slope);
                 enQueue(a);

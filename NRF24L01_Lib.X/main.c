@@ -30,6 +30,7 @@ void main(void)
     uint16_t Timeout_100ms = 0;
     uint16_t Timeout_10ms = 0;
     uint8_t AppPayload[8] = {0};
+    uint8_t CurrentValue = 0;
     // initialize the device
     SYSTEM_Initialize();
     INTERRUPT_GlobalInterruptEnable();
@@ -48,7 +49,14 @@ void main(void)
             if (NRF_Available(0))
             {
                 NRF_ReadPayload(AppPayload, 8u);
+                if (IsFreeAmount(50) == 1u)
+                {
+                    LinearTransiant(AppPayload[0], CurrentValue);
+                    CurrentValue = AppPayload[0];
+                }
+                else { /* Do nothing */ }
             }
+            else { /* Do nothing */ }
             NRF_StatusHandler();
             enQueue(AppPayload[0]);
             PWM1_DutyCycleSet(deQueue());
