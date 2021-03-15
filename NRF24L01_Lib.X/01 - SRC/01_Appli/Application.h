@@ -20,7 +20,6 @@ typedef struct
 {
     int16_t Front;
     int16_t Rear;
-    uint8_t *Buffer;
     uint16_t BufferSize;
 }t_Circular_queue;
 
@@ -29,7 +28,7 @@ void AppInit(void);
 void QueueInit(void);
 uint8_t IsFull(void);
 uint8_t IsEmpty(void);
-uint8_t IsFreeAmount(uint8_t Amount);
+uint8_t KeepDistance(uint8_t amount);
 void enQueue(uint8_t element);
 uint8_t deQueue(void);
 void LinearTransiant(uint8_t NewValue, uint8_t OldValue);

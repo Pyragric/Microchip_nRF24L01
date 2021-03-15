@@ -16,21 +16,21 @@ void AppInit(void)
 {
     PrintUART("Initialization\r\n");
     NRF24L01_Init();
+    QueueInit();
     NRF_SetAddrWidth(5u);
     NRF_SetRFDataRate(NRF_1MBPS);
     NRF_SetRFPower(NRF_PWR_MAX);
-    NRF_SetRFChannel(100);
-    NRF_OpenReadingPipe(0, "Node0", 8, 1, 1);
-    NRF_SetTxAddr("Node1");
+    NRF_SetRFChannel(100u);
+    NRF_OpenReadingPipe(0, "Node0", 8u, 1u, 1u);
     NRF_SetPrimaryAs(NRF_PRX);
     NRF_SetMaskIRQ(NRF_IRQ_RX_DR);
+    NRF_SetART(10u, 4u);
     NRF_StartListening();
 }
 
 void QueueInit(void)
 {
-    MyQueue.Buffer = CircularBuffer;
-    MyQueue.BufferSize = QUEUE_BUF_SIZE;
+    MyQueue.BufferSize = QUEUE_BUF_SIZE - 1u;
     MyQueue.Front = -1;
     MyQueue.Rear = -1;
 }
@@ -45,18 +45,23 @@ uint8_t IsEmpty(void)
     return (MyQueue.Front == -1) ? 1u : 0u;
 }
 
-uint8_t IsFreeAmount(uint8_t Amount)
+uint8_t KeepDistance(uint8_t amount)
 {
-    uint8_t diff;
-    if (MyQueue.Rear < MyQueue.Front)
-    {
-        diff = MyQueue.Rear + (QUEUE_BUF_SIZE - MyQueue.Front);
-    }
-    else
+    uint8_t diff, retVal = 1u;
+    if (MyQueue.Rear > MyQueue.Front)
     {
         diff = MyQueue.Rear - MyQueue.Front;
+        if (diff > amount)
+        {
+            retVal = 0u;
+        }
+        else
+        {  }
+        
     }
-    return (Amount > diff) ? 0u : 1u;
+    else
+    {  }
+    return retVal;
 }
 
 void enQueue(uint8_t element)
@@ -65,7 +70,7 @@ void enQueue(uint8_t element)
     {
         MyQueue.Front += (MyQueue.Front == -1) ? 1 : 0;
         MyQueue.Rear = (MyQueue.Rear + 1) % MyQueue.BufferSize;
-        MyQueue.Buffer[MyQueue.Rear] = element;
+        CircularBuffer[MyQueue.Rear] = element;
     }
     else { /* Do Nothing */ }
 }
@@ -75,7 +80,7 @@ uint8_t deQueue(void)
     uint8_t element = 0u;
     if (IsEmpty() == 0u)
     {
-        element = MyQueue.Buffer[MyQueue.Front];
+        element = CircularBuffer[MyQueue.Front];
         if (MyQueue.Front == MyQueue.Rear)
         {
             MyQueue.Front = -1;
