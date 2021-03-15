@@ -4,6 +4,8 @@
 static uint8_t (*p_NRF_SPI_Exchange)(uint8_t);
 static t_NRF_RX_PIPE NFR_RxPipes[6];
 static t_NRF_Setup NRFChip;
+static char baudrate[3][10] = {"1Mbps ", "2Mbps ", "250Kbps "};
+static char power[4][8] = {"-18dBm ", "-12dBm ", "-6dBm ", "0dBm"};
 
 void NRF24L01_Init(void)
 {
@@ -15,15 +17,13 @@ void NRF24L01_Init(void)
 void NRF_PrintDetails(void)
 {
     uint8_t var;
-    char baudrate[3][10] = {"1Mbps ", "2Mbps ", "250Kbps "};
-    char power[4][8] = {"-18dBm ", "-12dBm ", "-6dBm ", "0dBm"};
     NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
     NRF_Read_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
     NRF_Read_Register(REG_NRF_SETUP_RETR, &NRFChip.SETUP_RETR.byte, 1u);
     NRF_Read_Register(REG_NRF_RF_CH, &NRFChip.RF_CHANNEL, 1u);
     NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
     NRF_Read_Register(REG_NRF_TX_ADDR, NRFChip.TX_ADDR, 5u);
-    NRFChip.STATUS.byte = NRF_Read_Register(REG_NRF_RX_ADDR_P1, NFR_RxPipes[1].PIPE_ADDR, 5u);
+    NRFChip.STATUS.byte = NRF_Read_Register(REG_NRF_RX_ADDR_P0, NFR_RxPipes[0].PIPE_ADDR, 5u);
     
     var = NRFChip.RF_SETUP.s.DR_L << 1u | NRFChip.RF_SETUP.s.DR_H;
     
@@ -45,10 +45,10 @@ void NRF_PrintDetails(void)
     {
         UART_PNbase(NRFChip.TX_ADDR[var], UART_HEX, "");
     }
-    PrintUART("\r\nRX PIPE1 ADDR: 0x");
+    PrintUART("\r\nRX PIPE0 ADDR: 0x");
     for (var = 0; var < 5; var ++)
     {
-        UART_PNbase(NFR_RxPipes[1].PIPE_ADDR[var], UART_HEX, "");
+        UART_PNbase(NFR_RxPipes[0].PIPE_ADDR[var], UART_HEX, "");
     }
     UART_crlf();
 }
@@ -151,6 +151,13 @@ void NRF_SetAddrWidth(uint8_t AddressWidth)
     AddressWidth = (AddressWidth > 3u) ? 3u : 0u;
     NRFChip.ADDR_WIDTH = AddressWidth;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
+}
+
+void NRF_SetART(uint8_t count, uint8_t delay)
+{
+    NRFChip.SETUP_RETR.s.ARC = count;
+    NRFChip.SETUP_RETR.s.ARD = delay;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_SETUP_RETR, &NRFChip.SETUP_RETR.byte, 1u);
 }
 
 void NRF_StartListening(void)

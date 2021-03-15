@@ -205,6 +205,7 @@ void NRF_SetRFChannel(uint8_t RF_Channel);
 void NRF_SetRFPower(uint8_t RF_Pow);
 void NRF_SetRFDataRate(uint8_t Datarate);
 void NRF_SetAddrWidth(uint8_t AddressWidth);
+void NRF_SetART(uint8_t count, uint8_t delay);
 void NRF_StartListening(void);
 uint8_t NRF_Available(uint8_t PipeNo);
 uint8_t NRF_GetStatus(void);
