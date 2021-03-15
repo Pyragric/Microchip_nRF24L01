@@ -30,7 +30,7 @@ void main(void)
     uint16_t Timeout_100ms = 0;
     uint16_t Timeout_10ms = 0;
     uint8_t AppPayload[8] = {0};
-    uint8_t CurrentValue = 0;
+    uint8_t OldValue = 0;
     // initialize the device
     SYSTEM_Initialize();
     INTERRUPT_GlobalInterruptEnable();
@@ -46,26 +46,24 @@ void main(void)
             /*-----------------------------*/
             /*          10MS TASK          */
             /*-----------------------------*/
-            if (NRF_Available(0))
+            if (NRF_Available(0u))
             {
                 NRF_ReadPayload(AppPayload, 8u);
-                if (IsFreeAmount(50) == 1u)
-                {
-                    LinearTransiant(AppPayload[0], CurrentValue);
-                    CurrentValue = AppPayload[0];
-                }
-                else { /* Do nothing */ }
+                LinearTransiant(AppPayload[0], OldValue);
+                OldValue = AppPayload[0];
             }
             else { /* Do nothing */ }
             NRF_StatusHandler();
-            enQueue(AppPayload[0]);
+            if (KeepDistance(10u) != 0u)
+            {
+                enQueue(AppPayload[0]);
+            }
+            else {  }
             PWM1_DutyCycleSet(deQueue());
             PWM1_LoadBufferSet();
             Timeout_10ms = TICK_1MS + 10u;
         }
-        else
-        {
-        }
+        else {  }
         
         if (TICK_1MS > Timeout_100ms)
         {
@@ -75,9 +73,7 @@ void main(void)
             
             Timeout_100ms = TICK_1MS + 100u;
         }
-        else
-        {
-        }
+        else {  }
         
         
         if (TICK_1MS > Timeout_1s)
@@ -85,12 +81,10 @@ void main(void)
             /*-----------------------------*/
             /*         1000MS TASK         */
             /*-----------------------------*/
-//            UART_PNbase(NRF_GetStatus(), UART_BIN, "\r\n");
+//            UART_PNbase(Brightness, UART_DEC, "\r\n");
             Timeout_1s = TICK_1MS + 1000u;
         }
-        else
-        {
-        }
+        else {  }
     }
 }
 /**
