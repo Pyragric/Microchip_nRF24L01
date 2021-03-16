@@ -47,7 +47,8 @@ uint8_t IsEmpty(void)
 
 uint8_t KeepDistance(uint8_t amount)
 {
-    uint8_t diff, retVal = 1u;
+    int16_t diff;
+    uint8_t retVal = 1u;
     if (MyQueue.Rear > MyQueue.Front)
     {
         diff = MyQueue.Rear - MyQueue.Front;
