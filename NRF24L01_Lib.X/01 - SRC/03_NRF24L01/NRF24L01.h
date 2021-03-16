@@ -81,7 +81,6 @@
 #define NRF_ADDR_5BYTES             0x03u
 
 /*       RF SETUP       */
-#define NRF_250KBPS                 2u
 #define NRF_1MBPS                   0u
 #define NRF_2MPBS                   1u
 #define NRF_PWR_MIN                 0u
@@ -105,96 +104,112 @@
 
 #define NRF_UNPACK_8(b, p, m) ((b >> p) & m)
 
-typedef struct
-{
-    union
-    {
-        uint8_t byte;
-        struct
-        {
-            uint8_t TX_FULL :       1;
-            uint8_t RX_P_NO :       3;
-            uint8_t MAX_RT :        1;
-            uint8_t TX_DS :         1;
-            uint8_t RX_DR :         1;
-        }s;
-    }STATUS;
-    union
-    {
-        uint8_t byte;
-        struct
-        {
-            uint8_t PRIM_RX:        1;
-            uint8_t PWR_UP:         1;
-            uint8_t CRCO:           1;
-            uint8_t EN_CRC:         1;
-            uint8_t IRQ_MASK:       3;
-        }s;
-    }CONFIG;
-    uint8_t TX_ADDR[5];
-    uint8_t RF_CHANNEL;
-    union
-    {
-        uint8_t byte;
-        struct
-        {
-            uint8_t :               1;
-            uint8_t PWR:            2;
-            uint8_t DR_H:           1;
-            uint8_t PLL_LOCK:       1;
-            uint8_t DR_L:           1;
-            uint8_t CONT_WAVE:      1;
-        }s;
-    }RF_SETUP;
-    uint8_t ADDR_WIDTH;
-    union
-    {
-        uint8_t byte;
-        struct
-        {
-            uint8_t ARC :           4;
-            uint8_t ARD :           4;
-        }s;
-    }SETUP_RETR;
-    uint8_t ReadFlag;
-} t_NRF_Setup;
+typedef union {
+    uint8_t byte;
+    struct {
+        uint8_t PRIM_RX : 1;
+        uint8_t PWR_UP : 1;
+        uint8_t CRCO : 1;
+        uint8_t EN_CRC : 1;
+        uint8_t MASK_MAX_RT : 1;
+        uint8_t MASK_TX_DS : 1;
+        uint8_t MASK_RX_DR : 1;
+    } s;
+} u_NRF_Config;
 
-typedef union
-{
-    uint8_t STATUS;
+typedef union {
+    uint8_t byte;
+    struct {
+        uint8_t AW : 2;
+    } s;
+} u_NRF_Address_Width;
+
+typedef union {
+    uint8_t byte;
+    struct {
+        uint8_t ARC : 4;
+        uint8_t ARD : 4;
+    } s;
+} u_NRF_Setup_Retr;
+
+typedef union {
+    uint8_t byte;
+    struct {
+        uint8_t RF_CH : 7;
+    } s;
+} u_NRF_RF_Channel;
+
+typedef union {
+    uint8_t byte;
+    struct {
+        uint8_t LNA_HCURR : 1;
+        uint8_t RF_PWR : 2;
+        uint8_t RF_DR : 1;
+        uint8_t PLL_LOCK : 1;
+    } s;
+} u_NRF_RF_Setup;
+
+typedef union {
+    uint8_t byte;
     struct {
         uint8_t TX_FULL : 1;
         uint8_t RX_P_NO : 3;
         uint8_t MAX_RT : 1;
         uint8_t TX_DS : 1;
         uint8_t RX_DR : 1;
-    } b;
+    } s;
 } u_NRF_Status;
 
-typedef union
-{
-    uint8_t FIFO_STATUS;
-    struct
-    {
+typedef union {
+    uint8_t byte;
+    struct {
+        uint8_t ARC_CNT : 4;
+        uint8_t PLOS_CNT : 4;
+    } s;
+} u_NRF_Observe_Tx;
+
+typedef union {
+    uint8_t byte;
+    struct {
         uint8_t RX_EMPTY : 1;
         uint8_t RX_FULL : 1;
-        uint8_t : 2;
+        uint8_t reserved : 2;
         uint8_t TX_EMPTY : 1;
         uint8_t TX_FULL : 1;
         uint8_t REUSE : 1;
-    }b;
-} u_NRF_FIFO_STATUS;
+    } s;
+} u_NRF_FIFO_Status;
 
-typedef struct
-{
+typedef union {
+    uint8_t byte;
+    struct {
+        uint8_t EN_DYN_ACK : 1;
+        uint8_t EN_ACK_PAY : 1;
+        uint8_t EN_DLP : 1;
+    } s;
+} u_NRF_Feature;
+
+typedef struct {
     uint8_t PAY_LEN;
     uint8_t PIPE_ADDR[5];
 } t_NRF_RX_PIPE;
 
+typedef struct {
+    u_NRF_Config CONFIG;
+    u_NRF_Address_Width AW;
+    u_NRF_Setup_Retr SETUP_RETR;
+    u_NRF_RF_Channel RF_CH;
+    u_NRF_RF_Setup RF_SETUP;
+    u_NRF_Status STATUS;
+    u_NRF_Observe_Tx OBSERVE_TX;
+    u_NRF_FIFO_Status FIFO_STATUS;
+    u_NRF_Feature FEATURE;
+    uint8_t TX_ADDR[5];
+} t_NRF_Registers;
 
 void NRF24L01_Init(void);
 void NRF_PrintDetails(void);
-void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t * PipeAddr, uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable);
+void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t PipeAddr[], uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable);
 void NRF_SetTxAddr(uint8_t *PipeAddr);
 void NRF_PipeEnable(uint8_t PipeNo);
 void NRF_PipeDisable(uint8_t PipeNo);

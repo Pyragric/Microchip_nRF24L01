@@ -3,8 +3,8 @@
 
 static uint8_t (*p_NRF_SPI_Exchange)(uint8_t);
 static t_NRF_RX_PIPE NFR_RxPipes[6];
-static t_NRF_Setup NRFChip;
-static char baudrate[3][10] = {"1Mbps ", "2Mbps ", "250Kbps "};
+static t_NRF_Registers NRFChip;
+static char baudrate[2][7] = {"1Mbps ", "2Mbps "};
 static char power[4][8] = {"-18dBm ", "-12dBm ", "-6dBm ", "0dBm"};
 
 void NRF24L01_Init(void)
@@ -18,27 +18,27 @@ void NRF_PrintDetails(void)
 {
     uint8_t var;
     NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
-    NRF_Read_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
+    NRF_Read_Register(REG_NRF_SETUP_AW, &NRFChip.AW.byte, 1u);
     NRF_Read_Register(REG_NRF_SETUP_RETR, &NRFChip.SETUP_RETR.byte, 1u);
-    NRF_Read_Register(REG_NRF_RF_CH, &NRFChip.RF_CHANNEL, 1u);
+    NRF_Read_Register(REG_NRF_RF_CH, &NRFChip.RF_CH.byte, 1u);
     NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
     NRF_Read_Register(REG_NRF_TX_ADDR, NRFChip.TX_ADDR, 5u);
     NRFChip.STATUS.byte = NRF_Read_Register(REG_NRF_RX_ADDR_P0, NFR_RxPipes[0].PIPE_ADDR, 5u);
     
-    var = NRFChip.RF_SETUP.s.DR_L << 1u | NRFChip.RF_SETUP.s.DR_H;
+    var = NRFChip.RF_SETUP.s.RF_DR;
     
     PrintUART("Config: ");
     UART_PNbase(NRFChip.CONFIG.byte, UART_BIN, "\r\n");
     PrintUART("Address Width: ");
-    UART_PNbase(NRFChip.ADDR_WIDTH + 2u, UART_DEC, " bytes\r\n");
+    UART_PNbase(NRFChip.AW.byte + 2u, UART_DEC, " bytes\r\n");
     PrintUART("Automatic Retransmission: ");
     UART_PNbase(NRFChip.SETUP_RETR.s.ARC, UART_DEC, "time(s) ");
     UART_PNbase(NRFChip.SETUP_RETR.s.ARD * (uint32_t)250, UART_DEC, "us\r\n");
     PrintUART("RF Channel freq: ");
-    UART_PNbase(NRFChip.RF_CHANNEL + 2400u, UART_DEC, "MHz\r\n");
+    UART_PNbase(NRFChip.RF_CH.s.RF_CH + 2400u, UART_DEC, "MHz\r\n");
     PrintUART("RF setup: ");
     PrintUART(baudrate[var]);
-    PrintUART(power[NRFChip.RF_SETUP.s.PWR]);
+    PrintUART(power[NRFChip.RF_SETUP.s.RF_PWR]);
     UART_crlf();
     PrintUART("TX ADDR: 0x");
     for (var = 0; var < 5; var ++)
@@ -53,10 +53,10 @@ void NRF_PrintDetails(void)
     UART_crlf();
 }
 
-void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t * PipeAddr, uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable)
+void NRF_OpenReadingPipe(uint8_t PipeNo, uint8_t PipeAddr[], uint8_t PayloadLength, uint8_t AutoAck, uint8_t Enable)
 {
     uint8_t i;
-    uint8_t AW = NRFChip.ADDR_WIDTH + 2u;
+    uint8_t AW = NRFChip.AW.byte + 2u;
     
     NFR_RxPipes[PipeNo].PAY_LEN = PayloadLength;
     
@@ -126,22 +126,21 @@ void NRF_SetPrimaryAs(uint8_t asPrimary)
 
 void NRF_SetRFChannel(uint8_t RF_Channel)
 {
-    NRFChip.RF_CHANNEL = (RF_Channel > 125u) ? 125u : RF_Channel;
-    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_CH, &NRFChip.RF_CHANNEL, 1u);
+    NRFChip.RF_CH.byte = (RF_Channel > 125u) ? 125u : RF_Channel;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_CH, &NRFChip.RF_CH.byte, 1u);
 }
 
 void NRF_SetRFPower(uint8_t RF_Pow)
 {
     NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
-    NRFChip.RF_SETUP.s.PWR = (RF_Pow > 3u) ? 3u : RF_Pow;
+    NRFChip.RF_SETUP.s.RF_PWR = (RF_Pow > 3u) ? 3u : RF_Pow;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
 }
 
 void NRF_SetRFDataRate(uint8_t Datarate)
 {
     NRF_Read_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
-    NRFChip.RF_SETUP.s.DR_L = Datarate & 0xFD;
-    NRFChip.RF_SETUP.s.DR_H = Datarate & 0xFE;
+    NRFChip.RF_SETUP.s.RF_DR = Datarate & 1u;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_RF_SETUP, &NRFChip.RF_SETUP.byte, 1u);
 }
 
@@ -149,8 +148,8 @@ void NRF_SetAddrWidth(uint8_t AddressWidth)
 {
     AddressWidth += (AddressWidth == 0u) ? 1u : 0u;
     AddressWidth = (AddressWidth > 3u) ? 3u : 0u;
-    NRFChip.ADDR_WIDTH = AddressWidth;
-    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_SETUP_AW, &NRFChip.ADDR_WIDTH, 1u);
+    NRFChip.AW.byte = AddressWidth;
+    NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_SETUP_AW, &NRFChip.AW.byte, 1u);
 }
 
 void NRF_SetART(uint8_t count, uint8_t delay)
@@ -195,7 +194,7 @@ uint8_t NRF_GetStatus(void)
 void NRF_SetMaskIRQ(uint8_t IRQMask)
 {
     NRF_Read_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
-    NRFChip.CONFIG.s.IRQ_MASK = IRQMask & 0x07;
+    NRFChip.CONFIG.byte = IRQMask & 0x07;
     NRFChip.STATUS.byte = NRF_Write_Register(REG_NRF_CONFIG, &NRFChip.CONFIG.byte, 1u);
 }
 
@@ -257,16 +256,16 @@ uint8_t NRF_Read_Register(uint8_t Register, uint8_t *Bytes, uint8_t Length)
 void NRF_StatusHandler(void)
 {
     u_NRF_Status StatusReg;
-    u_NRF_FIFO_STATUS NRF_Fifo;
-    StatusReg.STATUS = NRF_Read_Register(REG_NRF_FIFO_STATUS, &NRF_Fifo, 1u);
-    switch (StatusReg.STATUS >> 4)
+    u_NRF_FIFO_Status NRF_Fifo;
+    StatusReg.byte = NRF_Read_Register(REG_NRF_FIFO_STATUS, &NRF_Fifo.byte, 1u);
+    switch (StatusReg.byte >> 4)
     {
         case 1:     /* MAX_RT on going */
             break;
         case 2:     /* TX_DS on going */
             break;
         case 4:     /* RX_DR on going */
-            if (NRF_Fifo.b.RX_FULL == 1u)
+            if (NRF_Fifo.s.RX_FULL == 1u)
             {
                 p_NRF_SPI_Exchange(CMD_NRF_FLUSH_RX);
             }
